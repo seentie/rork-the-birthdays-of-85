@@ -227,97 +227,69 @@ export default function SettingsScreen() {
             {language === 'es' ? (
               <>
                 <Text style={[styles.privacySection, { color: theme.textSecondary }]}>
-                  (Última Actualización: Enero 2025)
+                  Actualizado: Noviembre 2025
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Resumen</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>La Versión Corta</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  OLD SKOOL APPS ("nosotros", "nuestro" o "nos") respeta su privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información cuando usa nuestra aplicación móvil.
+                  No te rastreamos. No recopilamos tus datos. No vendemos nada a nadie. Haz lo tuyo.
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Información que Recopilamos</Text>
-                
-                <Text style={[styles.privacySubheading, { color: theme.text }]}>Información que Usted Proporciona</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>La Versión Un Poco Más Larga</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  • Información de cuenta (nombre, dirección de correo electrónico){"\n"}
-                  • Información de perfil que elige compartir{"\n"}
-                  • Contenido que crea o carga{"\n"}
-                  • Comunicaciones con nosotros
+                  Old Skool Apps cree que tus asuntos son tus asuntos. Esto es lo que significa:
                 </Text>
 
-                <Text style={[styles.privacySubheading, { color: theme.text }]}>Información Recopilada Automáticamente</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Qué No Recopilamos</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  • Información del dispositivo (tipo de dispositivo, sistema operativo){"\n"}
-                  • Datos de uso (cómo interactúa con la aplicación){"\n"}
-                  • Datos de registro (fallos de la aplicación, métricas de rendimiento){"\n"}
-                  • Datos de ubicación (si otorga permiso)
+                  • Información personal{"\n"}
+                  • Datos de uso{"\n"}
+                  • Datos de ubicación{"\n"}
+                  • Información del dispositivo{"\n"}
+                  • Cookies o píxeles de seguimiento{"\n"}
+                  • Análisis{"\n"}
+                  • Literalmente nada sobre ti
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Cómo Usamos su Información</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Qué No Hacemos</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Usamos su información para:{"\n\n"}
-                  • Proporcionar y mejorar nuestros servicios de aplicación{"\n"}
-                  • Crear y mantener su cuenta{"\n"}
-                  • Enviar actualizaciones y notificaciones importantes{"\n"}
-                  • Responder a sus preguntas y solicitudes de soporte{"\n"}
-                  • Analizar el uso de la aplicación para mejorar la experiencia del usuario{"\n"}
-                  • Garantizar la seguridad de la aplicación y prevenir fraudes
+                  • Rastrear tu actividad{"\n"}
+                  • Vender tus datos{"\n"}
+                  • Compartir información con terceros{"\n"}
+                  • Enviarte correos de marketing (a menos que te inscribas explícitamente){"\n"}
+                  • Conectar con redes sociales{"\n"}
+                  • Usar redes publicitarias espeluznantes
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Compartir Información</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Lo que Sucede en Tu Dispositivo Se Queda en Tu Dispositivo</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  No vendemos su información personal. Solo podemos compartir su información en estas situaciones:{"\n\n"}
-                  • Con su consentimiento - Cuando usted acepta explícitamente{"\n"}
-                  • Proveedores de servicios - Terceros que nos ayudan a operar la aplicación{"\n"}
-                  • Requisitos legales - Cuando lo requiera la ley o para proteger derechos y seguridad{"\n"}
-                  • Transferencias comerciales - Si nuestra empresa es vendida o fusionada
-                </Text>
-
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Seguridad de Datos</Text>
-                <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Implementamos medidas de seguridad apropiadas para proteger su información, incluyendo:{"\n\n"}
-                  • Cifrado de datos sensibles{"\n"}
-                  • Transmisión segura de datos{"\n"}
-                  • Evaluaciones de seguridad regulares{"\n"}
-                  • Acceso limitado a información personal
-                </Text>
-
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Sus Derechos</Text>
-                <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Usted tiene derecho a:{"\n\n"}
-                  • Acceder a su información personal{"\n"}
-                  • Corregir información inexacta{"\n"}
-                  • Eliminar su cuenta y datos{"\n"}
-                  • Optar por no recibir comunicaciones de marketing{"\n"}
-                  • Solicitar portabilidad de datos (cuando corresponda){"\n\n"}
-                  Para ejercer estos derechos, contáctenos en www.oldskoolapps.com
-                </Text>
-
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Privacidad de Menores</Text>
-                <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Nuestra aplicación no está destinada a niños menores de 13 años. No recopilamos a sabiendas información personal de niños menores de 13 años. Si descubrimos que hemos recopilado dicha información, la eliminaremos de inmediato.
+                  Todas nuestras aplicaciones almacenan datos localmente en tu dispositivo. Tus diarios, listas, cumpleaños, contactos, preferencias—todo vive en tu teléfono o tableta. No en nuestros servidores. No en la nube (a menos que elijas hacer una copia de seguridad a través de las funciones de respaldo integradas de tu dispositivo).{"\n\n"}
+                  Si eliminas la aplicación, tus datos se van con ella. Nosotros nunca los vemos en primer lugar.
                 </Text>
 
                 <Text style={[styles.privacyHeading, { color: theme.primary }]}>Servicios de Terceros</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Nuestra aplicación puede contener enlaces a servicios de terceros o integrarse con otras plataformas. Esta política de privacidad no se aplica a esos servicios. Revise sus políticas de privacidad por separado.
+                  Algunas aplicaciones pueden usar las funciones integradas de tu dispositivo (como el acceso a la biblioteca de fotos o la cámara) pero solo cuando des permiso, y solo para que la aplicación funcione. No enviamos esos datos a ninguna parte.
                 </Text>
 
                 <Text style={[styles.privacyHeading, { color: theme.primary }]}>Cambios a Esta Política</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Podemos actualizar esta Política de Privacidad de vez en cuando. Le notificaremos de cambios significativos mediante:{"\n\n"}
-                  • Publicando la política actualizada en la aplicación{"\n"}
-                  • Enviándole una notificación por correo electrónico{"\n"}
-                  • Mostrando un aviso cuando abra la aplicación la próxima vez
+                  Si alguna vez cambiamos esta política (spoiler: probablemente no lo haremos), actualizaremos esta página y la fecha en la parte superior. Pero nuestra filosofía sigue siendo la misma: tus datos son tuyos.
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Contáctenos</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>¿Preguntas?</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Si tiene preguntas sobre esta Política de Privacidad o nuestras prácticas de privacidad, contáctenos en:{"\n\n"}
+                  Si tienes preguntas sobre esta Política de Privacidad o nuestras prácticas de privacidad, contáctanos en:{"\n\n"}
                   Correo electrónico: sarah@oldskoolapps.com{"\n"}
                   Dirección: 2114 N Flamingo Road #867, Pembroke Pines, FL 33028{"\n"}
                   Teléfono: (646)-540-9602{"\n\n"}
-                  Versión de la aplicación: 1.0
+                  Somos humanos reales que sí responden.
+                </Text>
+
+                <Text style={[styles.privacyBody, { color: theme.text, fontStyle: 'italic', marginTop: 20 }]}>
+                  Somos old skool con las aplicaciones, y también con la privacidad. Haz lo tuyo.{"\n\n"}
+                  Old Skool Apps{"\n"}
+                  Donde la nostalgia se encuentra con la función, y tu privacidad es realmente tuya.
                 </Text>
 
                 <View style={styles.photoSection}>
@@ -335,97 +307,69 @@ export default function SettingsScreen() {
             ) : (
               <>
                 <Text style={[styles.privacySection, { color: theme.textSecondary }]}>
-                  (Last Updated: January 2025)
+                  Updated: November 2025
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Overview</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>The Short Version</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  OLD SKOOL APPS ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our mobile application.
+                  We don't track you. We don't collect your data. We don't sell anything to anyone. You do you.
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Information We Collect</Text>
-                
-                <Text style={[styles.privacySubheading, { color: theme.text }]}>Information You Provide</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>The Slightly Longer Version</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  ��� Account information (name, email address){"\n"}
-                  • Profile information you choose to share{"\n"}
-                  • Content you create or upload{"\n"}
-                  • Communications with us
+                  Old Skool Apps believes your business is your business. Here's what that means:
                 </Text>
 
-                <Text style={[styles.privacySubheading, { color: theme.text }]}>Information Automatically Collected</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>What We Don't Collect</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  • Device information (device type, operating system){"\n"}
-                  • Usage data (how you interact with the app){"\n"}
-                  • Log data (app crashes, performance metrics){"\n"}
-                  • Location data (if you grant permission)
+                  • Personal information{"\n"}
+                  • Usage data{"\n"}
+                  • Location data{"\n"}
+                  • Device information{"\n"}
+                  • Cookies or tracking pixels{"\n"}
+                  • Analytics{"\n"}
+                  • Literally anything about you
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>How We Use Your Information</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>What We Don't Do</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  We use your information to:{"\n\n"}
-                  • Provide and improve our app services{"\n"}
-                  • Create and maintain your account{"\n"}
-                  • Send important updates and notifications{"\n"}
-                  • Respond to your questions and support requests{"\n"}
-                  • Analyze app usage to improve user experience{"\n"}
-                  • Ensure app security and prevent fraud
+                  • Track your activity{"\n"}
+                  • Sell your data{"\n"}
+                  • Share information with third parties{"\n"}
+                  • Send you marketing emails (unless you explicitly sign up){"\n"}
+                  • Connect to social media{"\n"}
+                  • Use creepy ad networks
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Information Sharing</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>What Happens on Your Device Stays on Your Device</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  We do not sell your personal information. We may share your information only in these situations:{"\n\n"}
-                  • With your consent - When you explicitly agree{"\n"}
-                  • Service providers - Third parties who help us operate the app{"\n"}
-                  • Legal requirements - When required by law or to protect rights and safety{"\n"}
-                  • Business transfers - If our company is sold or merged
-                </Text>
-
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Data Security</Text>
-                <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  We implement appropriate security measures to protect your information, including:{"\n\n"}
-                  • Encryption of sensitive data{"\n"}
-                  • Secure data transmission{"\n"}
-                  • Regular security assessments{"\n"}
-                  • Limited access to personal information
-                </Text>
-
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Your Rights</Text>
-                <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  You have the right to:{"\n\n"}
-                  • Access your personal information{"\n"}
-                  • Correct inaccurate information{"\n"}
-                  • Delete your account and data{"\n"}
-                  • Opt out of marketing communications{"\n"}
-                  • Request data portability (where applicable){"\n\n"}
-                  To exercise these rights, contact us at www.oldskoolapps.com
-                </Text>
-
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Children's Privacy</Text>
-                <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Our app is not intended for children under 13. We do not knowingly collect personal information from children under 13. If we discover we have collected such information, we will delete it promptly.
+                  All our apps store data locally on your device. Your journals, lists, birthdays, contacts, preferences—everything lives on your phone or tablet. Not our servers. Not the cloud (unless you choose to back up via your device's built-in backup features).{"\n\n"}
+                  If you delete the app, your data goes with it. We never see it in the first place.
                 </Text>
 
                 <Text style={[styles.privacyHeading, { color: theme.primary }]}>Third-Party Services</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  Our app may contain links to third-party services or integrate with other platforms. This privacy policy does not apply to those services. Please review their privacy policies separately.
+                  Some apps may use your device's built-in features (like photo library access or camera) but only when you give permission, and only to make the app work. We don't send that data anywhere.
                 </Text>
 
                 <Text style={[styles.privacyHeading, { color: theme.primary }]}>Changes to This Policy</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
-                  We may update this Privacy Policy from time to time. We will notify you of significant changes by:{"\n\n"}
-                  • Posting the updated policy in the app{"\n"}
-                  • Sending you an email notification{"\n"}
-                  • Displaying a notice when you next open the app
+                  If we ever change this policy (spoiler: we probably won't), we'll update this page and the date at the top. But our philosophy stays the same: your data is yours.
                 </Text>
 
-                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Contact Us</Text>
+                <Text style={[styles.privacyHeading, { color: theme.primary }]}>Questions?</Text>
                 <Text style={[styles.privacyBody, { color: theme.text }]}>
                   If you have questions about this Privacy Policy or our privacy practices, please contact us at:{"\n\n"}
                   Email: sarah@oldskoolapps.com{"\n"}
                   Address: 2114 N Flamingo Road #867, Pembroke Pines, FL 33028{"\n"}
                   Phone: (646)-540-9602{"\n\n"}
-                  App version: 1.0
+                  We're real humans who do respond.
+                </Text>
+
+                <Text style={[styles.privacyBody, { color: theme.text, fontStyle: 'italic', marginTop: 20 }]}>
+                  We're old skool about apps, and privacy too. You do you.{"\n\n"}
+                  Old Skool Apps{"\n"}
+                  Where nostalgia meets function, and your privacy is actually yours.
                 </Text>
 
                 <View style={styles.photoSection}>
