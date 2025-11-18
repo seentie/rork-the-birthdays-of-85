@@ -9,6 +9,7 @@ import { useLanguage } from '@/hooks/use-language';
 import { BirthdayCard } from '@/components/BirthdayCard';
 import { QuoteDisplay } from '@/components/QuoteDisplay';
 import { RetroButton } from '@/components/RetroButton';
+import { BalloonText } from '@/components/BalloonText';
 
 
 
@@ -51,32 +52,8 @@ export default function DashboardScreen() {
         <View style={{ width: containerWidth, maxWidth: '100%' }}>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
-            <Text 
-              style={[
-                styles.title, 
-                { 
-                  color: theme.primary,
-                  textShadowColor: 'rgba(255, 255, 255, 0.9)',
-                  textShadowOffset: { width: 0, height: 4 },
-                  textShadowRadius: 0,
-                }
-              ]}
-            >
-              The Birthdays
-            </Text>
-            <Text 
-              style={[
-                styles.title, 
-                { 
-                  color: theme.primary,
-                  textShadowColor: 'rgba(255, 255, 255, 0.9)',
-                  textShadowOffset: { width: 0, height: 4 },
-                  textShadowRadius: 0,
-                }
-              ]}
-            >
-              of &apos;85
-            </Text>
+            <BalloonText text="The Birthdays" color={theme.primary} />
+            <BalloonText text="of '85" color={theme.primary} />
           </View>
           <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
             {t('home.subtitle')}
