@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { useTheme } from '@/hooks/use-theme';
@@ -13,6 +13,9 @@ export default function CalendarScreen() {
   const { t } = useLanguage();
   const { getBirthdaysByMonth } = useBirthdays();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 768;
+  const containerWidth = isTablet ? Math.min(width * 0.7, 600) : width;
 
   const monthBirthdays = getBirthdaysByMonth(currentMonth + 1);
   const daysInMonth = months[currentMonth].days;
@@ -105,22 +108,26 @@ export default function CalendarScreen() {
 
       <ScrollView 
         style={styles.calendarScroll}
-        contentContainerStyle={styles.calendarGrid}
+        contentContainerStyle={[styles.scrollContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}
         showsVerticalScrollIndicator={false}
       >
-        {renderCalendarGrid()}
+        <View style={[styles.calendarGrid, { width: isTablet ? containerWidth : '100%' }]}>
+          {renderCalendarGrid()}
+        </View>
       </ScrollView>
 
-      <View style={[styles.legend, { backgroundColor: theme.cardBackground }]}>
-        <View style={styles.legendItem}>
-          <View style={[styles.legendDot, { backgroundColor: theme.primary }]} />
-          <Text style={[styles.legendText, { color: theme.textSecondary }]}>
-            {t('calendar.hasBirthday')}
+      <View style={[styles.legendContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}>
+        <View style={[styles.legend, { backgroundColor: theme.cardBackground, width: isTablet ? containerWidth : undefined }]}>
+          <View style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: theme.primary }]} />
+            <Text style={[styles.legendText, { color: theme.textSecondary }]}>
+              {t('calendar.hasBirthday')}
+            </Text>
+          </View>
+          <Text style={[styles.birthdayCount, { color: theme.text }]}>
+            {monthBirthdays.length} {t('calendar.birthdaysThisMonth')}
           </Text>
         </View>
-        <Text style={[styles.birthdayCount, { color: theme.text }]}>
-          {monthBirthdays.length} {t('calendar.birthdaysThisMonth')}
-        </Text>
       </View>
     </LinearGradient>
   );
@@ -154,6 +161,9 @@ const styles = StyleSheet.create({
   calendarScroll: {
     flex: 1,
   },
+  scrollContainer: {
+    flexGrow: 1,
+  },
   calendarGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -186,11 +196,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  legendContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+  },
   legend: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 20,
     padding: 16,
     borderRadius: 12,
   },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Search, Plus } from 'lucide-react-native';
 import { router } from 'expo-router';
@@ -12,6 +12,9 @@ export default function ListScreen() {
   const { theme } = useTheme();
   const { birthdays } = useBirthdays();
   const [searchQuery, setSearchQuery] = useState('');
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 768;
+  const containerWidth = isTablet ? Math.min(width * 0.7, 700) : width;
 
   const filteredBirthdays = birthdays.filter(birthday =>
     birthday.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -29,8 +32,8 @@ export default function ListScreen() {
       colors={theme.backgroundGradient}
       style={styles.container}
     >
-      <View style={styles.searchContainer}>
-        <View style={[styles.searchBar, { backgroundColor: theme.cardBackground }]}>
+      <View style={[styles.searchContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}>
+        <View style={[styles.searchBar, { backgroundColor: theme.cardBackground, width: isTablet ? containerWidth : undefined }]}>
           <Search size={20} color={theme.textSecondary} />
           <TextInput
             style={[styles.searchInput, { color: theme.text }]}
@@ -44,37 +47,39 @@ export default function ListScreen() {
 
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch' }]}
         showsVerticalScrollIndicator={false}
       >
-        {sortedBirthdays.length > 0 ? (
-          sortedBirthdays.map((birthday) => (
-            <BirthdayCard
-              key={birthday.id}
-              birthday={birthday}
-              onPress={() => router.push(`/birthday/${birthday.id}`)}
-              onLongPress={() => router.push(`/edit-birthday?id=${birthday.id}`)}
-            />
-          ))
-        ) : (
-          <View style={[styles.emptyState, { backgroundColor: theme.cardBackground }]}>
-            <Text style={[styles.emptyTitle, { color: theme.text }]}>
-              {searchQuery ? 'No birthdays found' : 'No birthdays yet'}
-            </Text>
-            <Text style={[styles.emptyText, { color: theme.textSecondary }]}>
-              {searchQuery 
-                ? 'Try a different search term' 
-                : 'Start adding birthdays to never forget a special day!'}
-            </Text>
-            {!searchQuery && (
-              <RetroButton
-                title="Add Birthday"
-                onPress={() => router.push('/add-birthday')}
-                style={{ marginTop: 20 }}
+        <View style={{ width: isTablet ? containerWidth : '100%' }}>
+          {sortedBirthdays.length > 0 ? (
+            sortedBirthdays.map((birthday) => (
+              <BirthdayCard
+                key={birthday.id}
+                birthday={birthday}
+                onPress={() => router.push(`/birthday/${birthday.id}`)}
+                onLongPress={() => router.push(`/edit-birthday?id=${birthday.id}`)}
               />
-            )}
-          </View>
-        )}
+            ))
+          ) : (
+            <View style={[styles.emptyState, { backgroundColor: theme.cardBackground }]}>
+              <Text style={[styles.emptyTitle, { color: theme.text }]}>
+                {searchQuery ? 'No birthdays found' : 'No birthdays yet'}
+              </Text>
+              <Text style={[styles.emptyText, { color: theme.textSecondary }]}>
+                {searchQuery 
+                  ? 'Try a different search term' 
+                  : 'Start adding birthdays to never forget a special day!'}
+              </Text>
+              {!searchQuery && (
+                <RetroButton
+                  title="Add Birthday"
+                  onPress={() => router.push('/add-birthday')}
+                  style={{ marginTop: 20 }}
+                />
+              )}
+            </View>
+          )}
+        </View>
       </ScrollView>
 
       {sortedBirthdays.length > 0 && (

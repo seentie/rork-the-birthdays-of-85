@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Plus, Sparkles } from 'lucide-react-native';
 import { router } from 'expo-router';
@@ -17,6 +17,9 @@ export default function DashboardScreen() {
   const { t, language } = useLanguage();
   const { birthdays, getUpcoming, getBirthdaysByMonth } = useBirthdays();
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 768;
+  const containerWidth = isTablet ? Math.min(width * 0.7, 700) : '100%';
 
   
   const upcomingBirthdays = getUpcoming(5);
@@ -42,9 +45,10 @@ export default function DashboardScreen() {
 
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch' }]}
         showsVerticalScrollIndicator={false}
       >
+        <View style={{ width: containerWidth, maxWidth: '100%' }}>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
             <Text 
@@ -151,6 +155,7 @@ export default function DashboardScreen() {
               />
             </View>
           )}
+        </View>
         </View>
       </ScrollView>
     </LinearGradient>

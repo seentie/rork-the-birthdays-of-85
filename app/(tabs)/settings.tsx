@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Palette, Info, Heart, Globe, Shield } from 'lucide-react-native';
 import { useTheme } from '../../hooks/use-theme';
@@ -10,6 +10,9 @@ export default function SettingsScreen() {
   const { theme, changeTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 768;
+  const containerWidth = isTablet ? Math.min(width * 0.7, 700) : '100%';
 
   return (
     <LinearGradient
@@ -18,9 +21,10 @@ export default function SettingsScreen() {
     >
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch' }]}
         showsVerticalScrollIndicator={false}
       >
+        <View style={{ width: containerWidth, maxWidth: '100%' }}>
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Palette size={20} color={theme.primary} />
@@ -189,6 +193,7 @@ export default function SettingsScreen() {
                 : "• The 80's had the best music\n• Neon colors were everywhere\n• Big hair was totally rad\n• Everyone had a Walkman"}
             </Text>
           </View>
+        </View>
         </View>
       </ScrollView>
 
