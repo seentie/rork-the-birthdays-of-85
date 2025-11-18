@@ -60,7 +60,7 @@ export default function CalendarScreen() {
           </Text>
           {hasBirthday && (
             <View style={styles.birthdayIndicator}>
-              {dayBirthdays.slice(0, 2).map((b, index) => (
+              {dayBirthdays.map((b, index) => (
                 <Text 
                   key={index} 
                   style={[styles.birthdayName, { color: theme.text }]}
@@ -69,11 +69,6 @@ export default function CalendarScreen() {
                   {b.name.split(' ')[0]}
                 </Text>
               ))}
-              {dayBirthdays.length > 2 && (
-                <Text style={[styles.moreIndicator, { color: theme.accent }]}>
-                  +{dayBirthdays.length - 2}
-                </Text>
-              )}
             </View>
           )}
         </TouchableOpacity>
@@ -165,31 +160,31 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   calendarGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     paddingHorizontal: 20,
   },
   dayCell: {
-    width: '14.28%',
-    aspectRatio: 1,
-    padding: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 12,
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 4,
-    alignItems: 'center',
+    marginBottom: 6,
+    minHeight: 50,
   },
   dayNumber: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: 'bold',
+    width: 40,
   },
   birthdayIndicator: {
     flex: 1,
-    width: '100%',
-    marginTop: 2,
+    marginLeft: 12,
   },
   birthdayName: {
-    fontSize: 8,
-    textAlign: 'center',
+    fontSize: 12,
+    marginBottom: 2,
   },
   moreIndicator: {
     fontSize: 8,
