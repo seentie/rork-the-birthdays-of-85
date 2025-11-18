@@ -29,13 +29,16 @@ export default function CalendarScreen() {
     });
   };
 
-  const renderCalendarGrid = () => {
-    const days = [];
+  const renderCalendarColumns = () => {
+    const midPoint = Math.ceil(daysInMonth / 2);
+    const column1 = [];
+    const column2 = [];
+    
     for (let day = 1; day <= daysInMonth; day++) {
       const dayBirthdays = monthBirthdays.filter(b => b.date.day === day);
       const hasBirthday = dayBirthdays.length > 0;
       
-      days.push(
+      const dayCell = (
         <TouchableOpacity
           key={day}
           style={[
@@ -73,8 +76,15 @@ export default function CalendarScreen() {
           )}
         </TouchableOpacity>
       );
+      
+      if (day <= midPoint) {
+        column1.push(dayCell);
+      } else {
+        column2.push(dayCell);
+      }
     }
-    return days;
+    
+    return { column1, column2 };
   };
 
   return (
@@ -106,8 +116,13 @@ export default function CalendarScreen() {
         contentContainerStyle={[styles.scrollContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.calendarGrid, { width: isTablet ? containerWidth : '100%' }]}>
-          {renderCalendarGrid()}
+        <View style={[styles.calendarContainer, { width: isTablet ? containerWidth : '100%' }]}>
+          <View style={styles.column}>
+            {renderCalendarColumns().column1}
+          </View>
+          <View style={styles.column}>
+            {renderCalendarColumns().column2}
+          </View>
         </View>
       </ScrollView>
 
@@ -159,19 +174,24 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
   },
-  calendarGrid: {
-    flexDirection: 'column',
+  calendarContainer: {
+    flexDirection: 'row',
     paddingHorizontal: 20,
+    gap: 10,
+  },
+  column: {
+    flex: 1,
+    flexDirection: 'column',
   },
   dayCell: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 12,
+    padding: 10,
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 6,
-    minHeight: 50,
+    minHeight: 45,
   },
   dayNumber: {
     fontSize: 18,
