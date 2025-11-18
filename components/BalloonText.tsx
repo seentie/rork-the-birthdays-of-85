@@ -73,6 +73,13 @@ export function BalloonText({ text, color }: BalloonTextProps) {
                   style={styles.balloonSvg}
                 >
                   <Ellipse
+                    cx="31"
+                    cy="37"
+                    rx="26"
+                    ry="32"
+                    fill="rgba(0, 0, 0, 0.15)"
+                  />
+                  <Ellipse
                     cx="30"
                     cy="35"
                     rx="26"
@@ -81,11 +88,18 @@ export function BalloonText({ text, color }: BalloonTextProps) {
                     opacity={0.95}
                   />
                   <Ellipse
-                    cx="22"
-                    cy="28"
-                    rx="8"
-                    ry="10"
-                    fill="rgba(255, 255, 255, 0.3)"
+                    cx="20"
+                    cy="25"
+                    rx="10"
+                    ry="12"
+                    fill="rgba(255, 255, 255, 0.4)"
+                  />
+                  <Ellipse
+                    cx="38"
+                    cy="45"
+                    rx="5"
+                    ry="7"
+                    fill="rgba(0, 0, 0, 0.1)"
                   />
                   <Path
                     d={getBalloonPath(letter)}
@@ -95,22 +109,28 @@ export function BalloonText({ text, color }: BalloonTextProps) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
+                  <Path
+                    d="M28,67 Q30,70 32,67"
+                    fill={balloonColor}
+                    stroke={balloonColor}
+                    strokeWidth="1"
+                  />
                   <Line
                     x1="30"
-                    y1="67"
+                    y1="70"
                     x2={30 + sway}
-                    y2={stringHeight}
-                    stroke="#666"
-                    strokeWidth="1.5"
+                    y2={stringHeight - 5}
+                    stroke="#888"
+                    strokeWidth="2"
                     strokeLinecap="round"
                   />
                   <Ellipse
                     cx={30 + sway}
-                    cy={stringHeight}
-                    rx="3"
-                    ry="5"
+                    cy={stringHeight - 3}
+                    rx="4"
+                    ry="6"
                     fill="#666"
-                    opacity={0.6}
+                    opacity={0.7}
                   />
                 </Svg>
               </View>
