@@ -7,8 +7,6 @@ interface BalloonTextProps {
   color: string;
 }
 
-
-
 export function BalloonText({ text, color }: BalloonTextProps) {
   const words = text.split(' ');
   
@@ -20,7 +18,7 @@ export function BalloonText({ text, color }: BalloonTextProps) {
     '#FF8B94',
     '#B4A7D6',
     '#FFD3B6',
-    '#D4A5A5',
+    '#95E1D3',
   ];
   
   return (
@@ -28,79 +26,70 @@ export function BalloonText({ text, color }: BalloonTextProps) {
       {words.map((word, wordIndex) => (
         <View key={wordIndex} style={styles.wordContainer}>
           {word.split('').map((letter, letterIndex) => {
-            const stringHeight = 60 + (Math.sin((letterIndex + wordIndex) * 0.7) * 20);
             const balloonColor = balloonColors[(letterIndex + wordIndex) % balloonColors.length];
-            const sway = Math.sin((letterIndex + wordIndex) * 0.5) * 5;
-            const rotation = Math.sin((letterIndex + wordIndex) * 0.3) * 8;
+            const sway = Math.sin((letterIndex + wordIndex) * 0.5) * 3;
+            const rotation = Math.sin((letterIndex + wordIndex) * 0.4) * 5;
             
             return (
               <View 
                 key={letterIndex} 
                 style={[
                   styles.letterContainer,
-                  { transform: [{ translateX: sway }] }
+                  { transform: [{ translateX: sway }, { rotate: `${rotation}deg` }] }
                 ]}
               >
                 <Svg 
-                  height={stringHeight + 90} 
-                  width={70}
-                  style={[styles.balloonSvg, { transform: [{ rotate: `${rotation}deg` }] }]}
+                  height={150} 
+                  width={55}
+                  style={styles.balloonSvg}
                 >
                   <Ellipse
-                    cx="36"
-                    cy="52"
-                    rx="32"
-                    ry="42"
-                    fill="rgba(0, 0, 0, 0.12)"
+                    cx="28"
+                    cy="38"
+                    rx="24"
+                    ry="32"
+                    fill="rgba(0, 0, 0, 0.1)"
                   />
                   
                   <Ellipse
-                    cx="35"
-                    cy="48"
-                    rx="32"
-                    ry="42"
+                    cx="27"
+                    cy="35"
+                    rx="24"
+                    ry="32"
                     fill={balloonColor}
                   />
                   
                   <Ellipse
-                    cx="23"
-                    cy="34"
-                    rx="12"
-                    ry="16"
-                    fill="rgba(255, 255, 255, 0.5)"
+                    cx="18"
+                    cy="25"
+                    rx="9"
+                    ry="12"
+                    fill="rgba(255, 255, 255, 0.4)"
                   />
                   
                   <Ellipse
-                    cx="43"
-                    cy="58"
-                    rx="7"
-                    ry="10"
-                    fill="rgba(0, 0, 0, 0.08)"
+                    cx="34"
+                    cy="44"
+                    rx="5"
+                    ry="8"
+                    fill="rgba(0, 0, 0, 0.1)"
                   />
                   
                   <Path
-                    d="M32,90 Q35,93 38,90"
+                    d="M24,67 Q27,70 30,67"
                     fill={balloonColor}
                     stroke={balloonColor}
                     strokeWidth="2"
                   />
                   
                   <Line
-                    x1="35"
-                    y1="93"
-                    x2={35 + (sway * 0.3)}
-                    y2={stringHeight + 80}
-                    stroke="rgba(100, 100, 100, 0.6)"
-                    strokeWidth="1.5"
+                    x1="27"
+                    y1="70"
+                    x2="27"
+                    y2="140"
+                    stroke="rgba(100, 100, 100, 0.5)"
+                    strokeWidth="1.2"
                     strokeLinecap="round"
-                  />
-                  
-                  <Ellipse
-                    cx={35 + (sway * 0.3)}
-                    cy={stringHeight + 80}
-                    rx="3"
-                    ry="4"
-                    fill="rgba(80, 80, 80, 0.5)"
                   />
                 </Svg>
                 
@@ -109,9 +98,9 @@ export function BalloonText({ text, color }: BalloonTextProps) {
                     styles.balloonLetter,
                     { 
                       color: '#FFFFFF',
-                      textShadowColor: 'rgba(0, 0, 0, 0.25)',
+                      textShadowColor: 'rgba(0, 0, 0, 0.3)',
                       textShadowOffset: { width: 1, height: 2 },
-                      textShadowRadius: 3,
+                      textShadowRadius: 4,
                     }
                   ]}
                 >
@@ -129,21 +118,22 @@ export function BalloonText({ text, color }: BalloonTextProps) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    paddingTop: 10,
-    gap: 15,
+    paddingVertical: 5,
+    gap: 8,
   },
   wordContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: -5,
+    alignItems: 'flex-end',
+    gap: -8,
   },
   letterContainer: {
+    width: 55,
+    height: 150,
     alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
+    justifyContent: 'flex-start',
   },
   balloonSvg: {
     position: 'absolute',
@@ -151,10 +141,11 @@ const styles = StyleSheet.create({
     left: 0,
   },
   balloonLetter: {
-    fontSize: 32,
+    fontSize: 26,
     fontWeight: '900' as const,
     position: 'absolute',
-    top: 25,
+    top: 18,
     textAlign: 'center',
+    zIndex: 2,
   },
 });
