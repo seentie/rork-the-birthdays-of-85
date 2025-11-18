@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { useTheme } from '@/hooks/use-theme';
@@ -30,9 +30,10 @@ export default function CalendarScreen() {
   };
 
   const renderCalendarColumns = () => {
-    const midPoint = Math.ceil(daysInMonth / 2);
+    const daysPerColumn = Math.ceil(daysInMonth / 3);
     const column1 = [];
     const column2 = [];
+    const column3 = [];
     
     for (let day = 1; day <= daysInMonth; day++) {
       const dayBirthdays = monthBirthdays.filter(b => b.date.day === day);
@@ -77,14 +78,16 @@ export default function CalendarScreen() {
         </TouchableOpacity>
       );
       
-      if (day <= midPoint) {
+      if (day <= daysPerColumn) {
         column1.push(dayCell);
-      } else {
+      } else if (day <= daysPerColumn * 2) {
         column2.push(dayCell);
+      } else {
+        column3.push(dayCell);
       }
     }
     
-    return { column1, column2 };
+    return { column1, column2, column3 };
   };
 
   return (
@@ -111,20 +114,21 @@ export default function CalendarScreen() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView 
+      <View 
         style={styles.calendarScroll}
-        contentContainerStyle={[styles.scrollContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}
-        showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.calendarContainer, { width: isTablet ? containerWidth : '100%' }]}>
+        <View style={[styles.calendarContainer, { width: isTablet ? containerWidth : '100%', alignSelf: isTablet ? 'center' : 'stretch' }]}>
           <View style={styles.column}>
             {renderCalendarColumns().column1}
           </View>
           <View style={styles.column}>
             {renderCalendarColumns().column2}
           </View>
+          <View style={styles.column}>
+            {renderCalendarColumns().column3}
+          </View>
         </View>
-      </ScrollView>
+      </View>
 
       <View style={[styles.legendContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}>
         <View style={[styles.legend, { backgroundColor: theme.cardBackground, width: isTablet ? containerWidth : undefined }]}>
@@ -170,14 +174,12 @@ const styles = StyleSheet.create({
   },
   calendarScroll: {
     flex: 1,
-  },
-  scrollContainer: {
-    flexGrow: 1,
+    paddingHorizontal: 20,
   },
   calendarContainer: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    gap: 10,
+    gap: 6,
+    flex: 1,
   },
   column: {
     flex: 1,
@@ -187,24 +189,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: 6,
     borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 6,
-    minHeight: 45,
+    borderRadius: 6,
+    marginBottom: 4,
+    minHeight: 32,
   },
   dayNumber: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
-    width: 40,
+    width: 28,
   },
   birthdayIndicator: {
     flex: 1,
-    marginLeft: 12,
+    marginLeft: 6,
   },
   birthdayName: {
-    fontSize: 12,
-    marginBottom: 2,
+    fontSize: 10,
+    marginBottom: 1,
   },
   moreIndicator: {
     fontSize: 8,
