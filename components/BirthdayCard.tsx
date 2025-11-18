@@ -23,6 +23,10 @@ export function BirthdayCard({ birthday, onPress, onLongPress }: BirthdayCardPro
         {
           backgroundColor: theme.cardBackground,
           borderColor: theme.primary,
+          shadowColor: theme.neonGlow,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.5,
+          shadowRadius: 8,
         },
       ]}
       onPress={onPress}
@@ -39,17 +43,33 @@ export function BirthdayCard({ birthday, onPress, onLongPress }: BirthdayCardPro
         )}
         
         <View style={styles.info}>
-          <Text style={[styles.name, { color: theme.text }]}>{birthday.name}</Text>
+          <Text style={[
+            styles.name, 
+            { 
+              color: theme.text,
+              textShadowColor: theme.primary,
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 6,
+            }
+          ]}>{birthday.name}</Text>
           <View style={styles.dateRow}>
-            <Calendar size={14} color={theme.textSecondary} />
+            <Calendar size={16} color={theme.textSecondary} />
             <Text style={[styles.date, { color: theme.textSecondary }]}>
               {formatBirthdayDate(birthday.date.month, birthday.date.day, language)}
             </Text>
           </View>
         </View>
         
-        <View style={styles.countdown}>
-          <Text style={[styles.countdownText, { color: theme.accent }]}>
+        <View style={[styles.countdown, { backgroundColor: `${theme.accent}22` }]}>
+          <Text style={[
+            styles.countdownText, 
+            { 
+              color: theme.accent,
+              textShadowColor: theme.accent,
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 4,
+            }
+          ]}>
             {getDaysUntilText(birthday, language)}
           </Text>
         </View>
@@ -63,7 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
-    borderWidth: 1,
+    borderWidth: 2,
   },
   content: {
     flexDirection: 'row',
@@ -87,9 +107,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '800' as const,
     marginBottom: 4,
+    letterSpacing: 0.5,
   },
   dateRow: {
     flexDirection: 'row',
@@ -98,14 +119,16 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 14,
+    fontWeight: '600' as const,
   },
   countdown: {
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 8,
     borderRadius: 20,
   },
   countdownText: {
-    fontSize: 12,
-    fontWeight: 'bold',
+    fontSize: 13,
+    fontWeight: '800' as const,
+    letterSpacing: 0.5,
   },
 });

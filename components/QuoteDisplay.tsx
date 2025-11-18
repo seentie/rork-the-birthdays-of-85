@@ -47,9 +47,24 @@ export function QuoteDisplay() {
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.cardBackground }]}>
+    <View style={[
+      styles.container, 
+      { 
+        backgroundColor: theme.cardBackground,
+        borderWidth: 1,
+        borderColor: `${theme.accent}44`,
+      }
+    ]}>
       <Animated.View style={{ opacity: fadeAnim }}>
-        <Text style={[styles.quote, { color: theme.textSecondary }]}>
+        <Text style={[
+          styles.quote, 
+          { 
+            color: theme.text,
+            textShadowColor: theme.accent,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 4,
+          }
+        ]}>
           <Text>&ldquo;</Text>
           <Text>{currentQuote}</Text>
           <Text>&rdquo;</Text>
@@ -66,9 +81,11 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   quote: {
-    fontSize: 14,
+    fontSize: 15,
     fontStyle: 'italic',
     textAlign: 'center',
-    lineHeight: 20,
+    lineHeight: 22,
+    fontWeight: '600' as const,
+    letterSpacing: 0.3,
   },
 });

@@ -56,9 +56,9 @@ export default function DashboardScreen() {
                 styles.title, 
                 { 
                   color: theme.primary,
-                  textShadowColor: 'rgba(255, 255, 255, 0.9)',
-                  textShadowOffset: { width: 0, height: 4 },
-                  textShadowRadius: 0,
+                  textShadowColor: theme.neonGlow,
+                  textShadowOffset: { width: 0, height: 0 },
+                  textShadowRadius: 15,
                 }
               ]}
             >
@@ -69,16 +69,21 @@ export default function DashboardScreen() {
                 styles.title, 
                 { 
                   color: theme.primary,
-                  textShadowColor: 'rgba(255, 255, 255, 0.9)',
-                  textShadowOffset: { width: 0, height: 4 },
-                  textShadowRadius: 0,
+                  textShadowColor: theme.neonGlow,
+                  textShadowOffset: { width: 0, height: 0 },
+                  textShadowRadius: 15,
                 }
               ]}
             >
               of &apos;85
             </Text>
           </View>
-          <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
+          <Text style={[styles.subtitle, { 
+            color: theme.text,
+            textShadowColor: theme.accent,
+            textShadowOffset: { width: 0, height: 0 },
+            textShadowRadius: 8,
+          }]}>
             {t('home.subtitle')}
           </Text>
         </View>
@@ -181,17 +186,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 42,
+    fontSize: 48,
     fontWeight: '900' as const,
-    letterSpacing: -1,
+    letterSpacing: 2,
     textAlign: 'center',
-    fontFamily: 'monospace',
     textTransform: 'uppercase' as const,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 16,
     marginTop: 8,
-    letterSpacing: 1,
+    letterSpacing: 3,
+    fontWeight: '700' as const,
+    textTransform: 'uppercase' as const,
   },
   section: {
     marginVertical: 16,
@@ -208,10 +214,10 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
+    fontSize: 20,
+    fontWeight: '800' as const,
+    textTransform: 'uppercase' as const,
+    letterSpacing: 2,
   },
   emptyState: {
     padding: 32,
@@ -241,13 +247,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statNumber: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontSize: 36,
+    fontWeight: '900' as const,
   },
   statLabel: {
-    fontSize: 12,
+    fontSize: 13,
     marginTop: 4,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
+    textTransform: 'uppercase' as const,
+    letterSpacing: 1.5,
+    fontWeight: '700' as const,
   },
 });
