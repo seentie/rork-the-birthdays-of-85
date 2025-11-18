@@ -9,34 +9,44 @@ export const [BirthdayProvider, useBirthdays] = createContextHook(() => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    loadBirthdays();
-  }, []);
-
-  const loadBirthdays = async () => {
-    try {
-      const stored = await AsyncStorage.getItem('birthdays');
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) {
-            setBirthdays(parsed);
-          } else {
-            console.error('Stored birthdays is not an array, resetting...');
+    let mounted = true;
+    
+    const loadBirthdays = async () => {
+      try {
+        const stored = await AsyncStorage.getItem('birthdays');
+        if (!mounted) return;
+        
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) {
+              setBirthdays(parsed);
+            } else {
+              console.error('Stored birthdays is not an array, resetting...');
+              await AsyncStorage.removeItem('birthdays');
+              setBirthdays([]);
+            }
+          } catch (parseError) {
+            console.error('Error parsing birthdays JSON:', parseError);
             await AsyncStorage.removeItem('birthdays');
             setBirthdays([]);
           }
-        } catch (parseError) {
-          console.error('Error parsing birthdays JSON:', parseError);
-          await AsyncStorage.removeItem('birthdays');
-          setBirthdays([]);
+        }
+      } catch (error) {
+        console.error('Error loading birthdays:', error);
+      } finally {
+        if (mounted) {
+          setIsLoading(false);
         }
       }
-    } catch (error) {
-      console.error('Error loading birthdays:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+    
+    loadBirthdays();
+    
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const saveBirthdays = async (newBirthdays: Birthday[]) => {
     try {
