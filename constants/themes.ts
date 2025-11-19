@@ -70,4 +70,18 @@ export const themes: Record<string, Theme> = {
     neonGlow: '#FF3366',
     headerGradient: ['#FF3366', '#33CCFF'],
   },
+  monochrome: {
+    id: 'monochrome',
+    name: 'Monochrome',
+    primary: '#000000',
+    secondary: '#808080',
+    accent: '#FFFFFF',
+    background: '#1A1A1A',
+    backgroundGradient: ['#1A1A1A', '#2A2A2A'],
+    cardBackground: 'rgba(255, 255, 255, 0.05)',
+    text: '#FFFFFF',
+    textSecondary: '#B0B0B0',
+    neonGlow: '#FFFFFF',
+    headerGradient: ['#000000', '#808080'],
+  },
 };
