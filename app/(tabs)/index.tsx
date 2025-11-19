@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useWindowDimensions, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Plus, Sparkles } from 'lucide-react-native';
 import { router } from 'expo-router';
@@ -56,9 +56,6 @@ export default function DashboardScreen() {
                 styles.title, 
                 { 
                   color: theme.primary,
-                  textShadowColor: theme.neonGlow,
-                  textShadowOffset: { width: 0, height: 0 },
-                  textShadowRadius: 15,
                 }
               ]}
             >
@@ -69,9 +66,6 @@ export default function DashboardScreen() {
                 styles.title, 
                 { 
                   color: theme.primary,
-                  textShadowColor: theme.neonGlow,
-                  textShadowOffset: { width: 0, height: 0 },
-                  textShadowRadius: 15,
                 }
               ]}
             >
@@ -186,11 +180,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 48,
+    fontSize: 52,
     fontWeight: '900' as const,
-    letterSpacing: 2,
+    letterSpacing: 4,
     textAlign: 'center',
     textTransform: 'uppercase' as const,
+    fontFamily: Platform.select({
+      ios: 'Courier New',
+      android: 'monospace',
+      web: 'Courier New, monospace',
+    }),
   },
   subtitle: {
     fontSize: 16,
