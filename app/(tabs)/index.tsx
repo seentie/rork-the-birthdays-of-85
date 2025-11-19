@@ -51,58 +51,26 @@ export default function DashboardScreen() {
         <View style={{ width: containerWidth, maxWidth: '100%' }}>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
-            <View style={styles.titleWrapper}>
-              <Text 
-                style={[
-                  styles.title, 
-                  styles.titleShadow,
-                  { 
-                    color: theme.accent,
-                  }
-                ]}
-              >
-                The Birthdays
-              </Text>
-              <Text 
-                style={[
-                  styles.title, 
-                  styles.titleShadow,
-                  { 
-                    color: theme.accent,
-                  }
-                ]}
-              >
-                of &apos;85
-              </Text>
-            </View>
-            <View style={[styles.titleWrapper, styles.titleMain]}>
-              <LinearGradient
-                colors={[theme.primary, theme.secondary, theme.primary]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={StyleSheet.absoluteFillObject}
-              />
-              <Text 
-                style={[
-                  styles.title, 
-                  { 
-                    color: 'transparent',
-                  }
-                ]}
-              >
-                The Birthdays
-              </Text>
-              <Text 
-                style={[
-                  styles.title, 
-                  { 
-                    color: 'transparent',
-                  }
-                ]}
-              >
-                of &apos;85
-              </Text>
-            </View>
+            <Text 
+              style={[
+                styles.title, 
+                { 
+                  color: theme.primary,
+                }
+              ]}
+            >
+              The Birthdays
+            </Text>
+            <Text 
+              style={[
+                styles.title, 
+                { 
+                  color: theme.primary,
+                }
+              ]}
+            >
+              of &apos;85
+            </Text>
           </View>
           <Text style={[styles.subtitle, { 
             color: theme.text,
@@ -210,16 +178,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center',
-    position: 'relative',
-  },
-  titleWrapper: {
-    alignItems: 'center',
-  },
-  titleShadow: {
-    position: 'absolute',
-  },
-  titleMain: {
-    overflow: 'hidden',
   },
   title: {
     fontSize: 46,
