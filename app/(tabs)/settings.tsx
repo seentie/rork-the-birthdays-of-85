@@ -229,7 +229,7 @@ export default function SettingsScreen() {
             {language === 'es' ? (
               <>
                 <Text style={[styles.privacySection, { color: theme.textSecondary }]}>
-                  Actualizado: Noviembre 2025
+                  Actualizado: Enero 2025
                 </Text>
 
                 <Text style={[styles.privacyHeading, { color: theme.primary }]}>La Versión Corta</Text>
@@ -309,7 +309,7 @@ export default function SettingsScreen() {
             ) : (
               <>
                 <Text style={[styles.privacySection, { color: theme.textSecondary }]}>
-                  Updated: November 2025
+                  Updated: January 2025
                 </Text>
 
                 <Text style={[styles.privacyHeading, { color: theme.primary }]}>The Short Version</Text>
