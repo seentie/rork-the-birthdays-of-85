@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Search, Plus } from 'lucide-react-native';
 import { router } from 'expo-router';
@@ -13,6 +14,7 @@ export default function ListScreen() {
   const { birthdays } = useBirthdays();
   const [searchQuery, setSearchQuery] = useState('');
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const isTablet = width >= 768;
   const containerWidth = isTablet ? Math.min(width * 0.7, 700) : width;
 
@@ -32,7 +34,7 @@ export default function ListScreen() {
       colors={theme.backgroundGradient}
       style={styles.container}
     >
-      <View style={[styles.searchContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}>
+      <View style={[styles.searchContainer, { alignItems: isTablet ? 'center' : 'stretch', paddingTop: insets.top }]}>
         <View style={[styles.searchBar, { backgroundColor: theme.cardBackground, width: isTablet ? containerWidth : undefined }]}>
           <Search size={20} color={theme.textSecondary} />
           <TextInput
@@ -47,7 +49,7 @@ export default function ListScreen() {
 
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch' }]}
+        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch', paddingBottom: Math.max(20, insets.bottom + 80) }]}
         showsVerticalScrollIndicator={false}
       >
         <View style={{ width: isTablet ? containerWidth : '100%' }}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, Image, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Palette, Info, Heart, Globe, Shield } from 'lucide-react-native';
 import { useTheme } from '../../hooks/use-theme';
@@ -11,6 +12,7 @@ export default function SettingsScreen() {
   const { language, setLanguage, t } = useLanguage();
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const isTablet = width >= 768;
   const containerWidth = isTablet ? Math.min(width * 0.7, 700) : '100%';
 
@@ -21,7 +23,7 @@ export default function SettingsScreen() {
     >
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch' }]}
+        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch', paddingTop: insets.top, paddingBottom: Math.max(20, insets.bottom) }]}
         showsVerticalScrollIndicator={false}
       >
         <View style={{ width: containerWidth, maxWidth: '100%' }}>

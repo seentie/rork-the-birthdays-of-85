@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, useWindowDimensions, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Plus, Sparkles } from 'lucide-react-native';
 import { router } from 'expo-router';
@@ -18,6 +19,7 @@ export default function DashboardScreen() {
   const { birthdays, getUpcoming, getBirthdaysByMonth } = useBirthdays();
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const isTablet = width >= 768;
   const containerWidth = isTablet ? Math.min(width * 0.7, 700) : '100%';
 
@@ -45,7 +47,7 @@ export default function DashboardScreen() {
 
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch' }]}
+        contentContainerStyle={[styles.scrollContent, { alignItems: isTablet ? 'center' : 'stretch', paddingTop: insets.top, paddingBottom: Math.max(20, insets.bottom) }]}
         showsVerticalScrollIndicator={false}
       >
         <View style={{ width: containerWidth, maxWidth: '100%' }}>

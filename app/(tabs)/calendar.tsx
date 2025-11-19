@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { useTheme } from '@/hooks/use-theme';
@@ -14,6 +15,7 @@ export default function CalendarScreen() {
   const { getBirthdaysByMonth } = useBirthdays();
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const isTablet = width >= 768;
   const containerWidth = isTablet ? Math.min(width * 0.7, 600) : width;
 
@@ -95,7 +97,7 @@ export default function CalendarScreen() {
       colors={theme.backgroundGradient}
       style={styles.container}
     >
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <TouchableOpacity onPress={() => navigateMonth(-1)}>
           <ChevronLeft size={28} color={theme.primary} />
         </TouchableOpacity>
@@ -130,7 +132,7 @@ export default function CalendarScreen() {
         </View>
       </View>
 
-      <View style={[styles.legendContainer, { alignItems: isTablet ? 'center' : 'stretch' }]}>
+      <View style={[styles.legendContainer, { alignItems: isTablet ? 'center' : 'stretch', paddingBottom: Math.max(20, insets.bottom) }]}>
         <View style={[styles.legend, { backgroundColor: theme.cardBackground, width: isTablet ? containerWidth : undefined }]}>
           <View style={styles.legendItem}>
             <View style={[styles.legendDot, { backgroundColor: theme.primary }]} />
